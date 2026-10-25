@@ -1,0 +1,53 @@
+name: 外链体检
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 校验全部外链
+        id: check
+        run: |
+          python scripts/check_links.py --output report.md | tee link-report.txt
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: 就失效链接开 issue
+        if: steps.check.outputs.exit_code != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('report.md', 'utf8');
+            const title = '外链体检：检测到失效链接';
+            const marker = '<!-- link-check -->';
+            const existing = await github.paginate(
+              github.rest.issues.listForRepo,
+              { owner: context.repo.owner, repo: context.repo.repo, state: 'open' }
+            );
+            const dup = existing.find(i => i.title === title && (i.body || '').includes(marker));
+            if (dup) {
+              core.info('已有同类 issue，追加评论');
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo, issue_number: dup.number,
+                body: marker + '\n\n本周复查结果：\n\n' + body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body: marker + '\n\n' + body, labels: ['correction']
+              });
+            }

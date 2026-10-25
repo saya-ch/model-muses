@@ -1,0 +1,43 @@
+# ---- 系统与编辑器垃圾文件 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ---- 编辑器临时文件 ----
+*~
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+.vscode/
+.idea/
+*.code-workspace
+
+# ---- Office 临时文件 ----
+~$*
+.~lock.*
+
+# ---- Python 缓存 ----
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ---- Node 缓存 ----
+node_modules/
+
+# ---- 本地溯源中间数据（体积大，可由 docs/来源与版权.md 复现）----
+_nav/
+dl/
+works/
+nw/
+bp/
+srcmap.json
+
+# ---- 未随仓库发布的作品（见 docs/来源与版权.md 第四节）----
+其他角色（非统一风格）/
+AI娘原画-其他角色（非统一风格）/

@@ -1,0 +1,19 @@
+# 统一换行为 LF，避免 Windows/macOS 混用导致的无意义 diff
+* text=auto eol=lf
+
+# 图片视为二进制：不做行尾转换、不做文本 diff
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.gif   binary
+*.webp  binary
+*.avif  binary
+*.bmp   binary
+*.ico   binary
+*.svg   text eol=lf
+
+# 文档统一 UTF-8 + LF
+*.md    text eol=lf
+*.txt   text eol=lf
+*.json  text eol=lf
+LICENSE text eol=lf

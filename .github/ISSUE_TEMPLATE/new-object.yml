@@ -1,0 +1,44 @@
+name: 补充新对象
+description: 建议收录尚未收录的 AI 模型、平台或工具的拟人形象
+labels: ["suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        收录标准：**该对象在 AI 技术版图上有独立位置**（有代表性的模型、平台、协议或工具），
+        且**存在公开可查的拟人形象作品**。
+
+        本仓库只收录**同一画师、同一画风的统一规格立绘**；若作品风格差异明显，会在
+        `docs/来源与版权.md` 中单独记录来源，但不一定随仓库发布。
+
+  - type: input
+    id: name
+    attributes:
+      label: 对象名称
+      placeholder: DeepSeek
+    validations:
+      required: true
+
+  - type: textarea
+    id: link
+    attributes:
+      label: 作品页链接
+      description: 原站上该立绘的作品页 URL
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: 画师 / 作者
+      description: 若作品页有署名请一并填写
+    validations:
+      required: true
+
+  - type: textarea
+    id: tech
+    attributes:
+      label: 技术定位（可选）
+      description: |
+        一两句话说明它属于哪一类技术、采用什么架构机制、什么协议授权。
+        只写稳定事实，不写版本号、跑分与价格。

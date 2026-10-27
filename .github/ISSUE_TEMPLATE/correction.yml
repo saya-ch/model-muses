@@ -1,0 +1,59 @@
+name: 纠错与问题反馈
+description: 技术描述过时或写错、官方链接失效、图片或溯源信息有误
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。本仓库的技术描述只写**稳定事实**，凡是与官方文档不符之处，都应当被修正。
+
+        若涉及**图片**（立绘、缩略图），请注意：图片著作权归原作者所有，本仓库仅获收录与下载许可，
+        因此我们**不接受图片的二次分发**，只能修正归属与来源信息。
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 问题类型
+      options:
+        - 技术描述过时（模型架构、机制、协议授权已变化）
+        - 技术描述写错（与官方文档不符）
+        - 官方链接失效（404 / 跳转异常）
+        - 来源与溯源信息有误（作品页、作者署名、授权标记）
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: object
+    attributes:
+      label: 涉及哪个对象
+      description: 填对象名称，如 DeepSeek、Hugging Face、ZCode
+      placeholder: DeepSeek
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: 当前仓库里是怎么写的
+      description: 粘贴相关段落即可
+      placeholder: DeepSeek（深度求索）背后是量化投资公司幻方量化，其模型走稀疏 MoE 路线……
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 应该是怎么写的
+      description: 若有官方文档措辞，请尽量沿用官方术语
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: 依据
+      description: 官方文档 / 论文 / 官方博客链接
+      placeholder: https://api-docs.deepseek.com/
+    validations:
+      required: true

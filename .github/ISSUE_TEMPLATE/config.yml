@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 收录标准与写法约定
+    url: https://github.com/saya-ch/model-muses/blob/master/docs/%E8%A7%92%E8%89%B2%E8%AE%BE%E5%AE%9A%E4%B8%8E%E8%AE%BE%E8%AE%A1%E8%A7%84%E5%BE%8B.md
+    about: 收录哪些对象、技术描述怎么写、先读这一篇

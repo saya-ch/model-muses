@@ -1,5 +1,7 @@
 # Model Muses
 
+<p align="center"><img src="assets/cover-ai-synth.png" width="440"></p>
+
 > 32 AI models & platforms · 32 standing portraits + 51 more in the gallery · technical profiles · per-image provenance
 
 本仓库收录 32 个主流大模型、AI 工具、算力与边缘基础设施的拟人形象立绘原画。全部图片出自**同一位画师、同一画风**的白底全身立绘，规格统一，可横向对比。其中 22 个对象取自蓝色大肥鱼站的立绘作品页并逐张完成溯源匹配；**文心一言娘**为轮椅坐姿设定、取自 [ai-chan-sheets](https://github.com/lmy414/ai-chan-sheets) 的参考原图目录（同一画师笔下的原始作品），不在原站作品库中，出处与差异见 [docs/来源与版权.md](docs/来源与版权.md)。

@@ -21,10 +21,16 @@ jobs:
 
       - name: 校验全部外链
         id: check
+        # 管道会把退出的判定权交给 tee；run 步骤默认带 -e，直接写 `$?` 既拿不到
+        # python 的退出码，也会让后续「开 issue」步骤根本没机会执行。
+        # 放进 if 条件里跑，-e 不生效，`$?` 才是脚本本身的结论。
         run: |
           set -o pipefail
-          python scripts/check_links.py --output report.md | tee link-report.txt
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          if python scripts/check_links.py --output report.md | tee link-report.txt; then
+            echo "exit_code=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: 就失效链接开 issue
         if: steps.check.outputs.exit_code != '0'

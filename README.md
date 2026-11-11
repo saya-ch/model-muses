@@ -2,7 +2,7 @@
 
 <p align="center"><img src="assets/cover-ai-synth.png" width="440"></p>
 
-> 32 AI models & platforms · 32 standing portraits + 51 more in the gallery · technical profiles · per-image provenance
+> 32 AI models & platforms · 32 standing portraits + 102 more in the gallery · technical profiles · per-image provenance
 
 本仓库收录 32 个主流大模型、AI 工具、算力与边缘基础设施的拟人形象立绘原画。全部图片出自**同一位画师、同一画风**的白底全身立绘，规格统一，可横向对比。其中 22 个对象取自蓝色大肥鱼站的立绘作品页并逐张完成溯源匹配；**文心一言娘**为轮椅坐姿设定、取自 [ai-chan-sheets](https://github.com/lmy414/ai-chan-sheets) 的参考原图目录（同一画师笔下的原始作品），不在原站作品库中，出处与差异见 [docs/来源与版权.md](docs/来源与版权.md)。
 
@@ -193,7 +193,7 @@
 | --- | --- |
 | [docs/角色设定与设计规律.md](docs/角色设定与设计规律.md) | 32 个对象的层级归类、技术本体速查表、设计符号与真实技术特性的对应关系 |
 | [docs/画廊.md](docs/画廊.md) | **任何类型的图**：立绘 36 / 插画 25 / 梗图 32 / 设定 8 / 漫画 1，共 102 张，每张都带预览与跳转 |
-| [docs/画廊索引.md](docs/画廊索引.md) | 站内 1112 件作品的全量缩略图墙，按对象与类型双索引，含 1040 件未署名作品的外链导览 |
+| [docs/画廊索引.md](docs/画廊索引.md) | 原站 1075 件未收作品的全量缩略图墙，按对象与类型双索引，含 1040 件未署名作品的外链导览 |
 | [docs/跨平台来源.md](docs/跨平台来源.md) | 站外 9 个平台的采集结果：pixiv、GitHub 开源生态、萌娘百科、社区资源库，以及「为什么大部分没收」的判定标准 |
 | [docs/官方链接索引.md](docs/官方链接索引.md) | 32 个对象的官网 / 文档 / 代码仓库入口，按用途分类跳转 |
 | [docs/来源与版权.md](docs/来源与版权.md) | 逐图来源表（作品页 / 原图路径 / 尺寸）、来源链路图、三类主体区分、版权与使用提示 |

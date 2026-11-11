@@ -22,6 +22,7 @@ jobs:
       - name: 校验全部外链
         id: check
         run: |
+          set -o pipefail
           python scripts/check_links.py --output report.md | tee link-report.txt
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
 

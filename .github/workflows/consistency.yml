@@ -1,0 +1,35 @@
+name: 文档一致性
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "README.md"
+      - "docs/**.md"
+      - "原画/**"
+      - "scripts/verify_counts.py"
+      - ".github/workflows/consistency.yml"
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/**.md"
+      - "原画/**"
+      - "scripts/verify_counts.py"
+      - ".github/workflows/consistency.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  counts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 校验文档计数与实际文件数
+        run: python scripts/verify_counts.py

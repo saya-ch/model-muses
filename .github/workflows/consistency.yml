@@ -33,3 +33,9 @@ jobs:
 
       - name: 校验文档计数与实际文件数
         run: python scripts/verify_counts.py
+
+      - name: 安装图片校验依赖
+        run: pip install --quiet pillow
+
+      - name: 校验缩略图规格与主表收图标准
+        run: python scripts/build_thumbs.py

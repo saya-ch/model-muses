@@ -186,6 +186,95 @@ def main():
             if not (ROOT / "原画" / "画廊" / sec / "thumbs" / f"{p.stem}.jpg").exists():
                 problems.append(f"原画/画廊/{sec}/thumbs/: 缺少 {p.stem} 的缩略图")
 
+    # ---- 5. 来源与版权.md：逐图来源表自身的一致性 ----
+    prov = read("docs/来源与版权.md")
+    # 三之三 是画廊 102 张的逐图总表；三之五 会把其中 8 张再列一遍细节，不能重复计
+    gal_zone = prov[prov.find("## 三之三"):prov.find("## 三之四")]
+    prov_rows = [ln for ln in gal_zone.splitlines() if ln.startswith("| `画廊/")]
+    if len(prov_rows) == gallery_total:
+        passed += 1
+    else:
+        problems.append(
+            f"docs/来源与版权.md: 画廊逐图来源表 {len(prov_rows)} 行，画廊实际 {gallery_total} 张")
+
+    # 授权分布：逐图表的授权列加总 = docs/画廊.md 的七档表
+    tier_counts = {}
+    host_counts = {}
+    HOST_MAP = (
+        ("www.bilibili.com", "画师 B 站动态"),
+        ("xn--pssy23gqgbz2d718b.com", "站点原图仓"),
+        ("raw.githubusercontent.com", "GitHub 开源项目"),
+        ("fisharchive.cc", "蓝色大肥鱼档案馆"),
+    )
+    authors, objects = set(), set()
+    for ln in prov_rows:
+        cells = [c.strip() for c in ln.strip().strip("|").split("|")]
+        if len(cells) < 8:
+            problems.append(f"docs/来源与版权.md: 表格列数不足 —— {cells[0]}")
+            continue
+        tier = cells[5].replace("*", "").strip()
+        tier_counts[tier] = tier_counts.get(tier, 0) + 1
+        authors.add(cells[4])
+        objects.add(cells[3])
+        url = re.search(r"\]\((https?://[^)]+)\)", cells[7])
+        host = (re.match(r"https?://([^/]+)", url.group(1)).group(1)
+                if url else "")
+        for known, bucket in HOST_MAP:
+            if host == known:
+                host_counts[bucket] = host_counts.get(bucket, 0) + 1
+                break
+        else:
+            problems.append(f"docs/来源与版权.md: {cells[0]} 的出处域名未归类（{host or '无链接'}）")
+
+    doc_tiers = {}
+    if auth_start >= 0:
+        for name, count in re.findall(r"^\| ([^|\n]+) \| (\d+) \|", gal_doc[auth_start:], re.M):
+            doc_tiers[name.strip()] = int(count)
+    if tier_counts == doc_tiers:
+        passed += 1
+    else:
+        problems.append(
+            "docs/来源与版权.md 逐图授权分布与 docs/画廊.md 七档表不符："
+            f"逐图 {tier_counts} · 七档表 {doc_tiers}")
+
+    check("画廊作者数", gal_doc, "docs/画廊.md",
+          r"来自 \*\*(\d+) 位作者\*\*", len(authors))
+    check("画廊覆盖对象数", gal_doc, "docs/画廊.md",
+          r"覆盖 \*\*(\d+) 个对象\*\*", len(objects))
+
+    # 四路来源的分布：域名统计 vs 正文写死的张数
+    for label, pattern in (
+            ("画师 B 站动态", r"画师 B 站动态 (\d+) 张"),
+            ("站点原图仓", r"站点原图仓 (\d+) 张"),
+            ("GitHub 开源项目", r"GitHub 开源项目 (\d+) 张"),
+            ("蓝色大肥鱼档案馆", r"蓝色大肥鱼档案馆 (\d+) 张")):
+        check(f"画廊来源·{label}", prov, "docs/来源与版权.md",
+              pattern, host_counts.get(label, 0))
+    if sum(host_counts.values()) != gallery_total:
+        problems.append(
+            f"docs/来源与版权.md: 四路来源合计 {sum(host_counts.values())} 张，"
+            f"画廊实际 {gallery_total} 张")
+
+    # 档案馆分批表之和 = 6.3 标题声明的张数
+    batch_sec = prov[prov.find("### 6.3"):]
+    batches = re.findall(r"^\| \**[^|\n]+\** \| \**\d{2}-\d{2}\** \| [^|\n]+ \| \**(\d+)\** \|",
+                         batch_sec, re.M)
+    declared = re.search(r"### 6\.3 收了 (\d+) 张", prov)
+    if declared and batches:
+        if int(declared.group(1)) == sum(int(b) for b in batches):
+            passed += 1
+        else:
+            problems.append(
+                f"docs/来源与版权.md: 6.3 标题写 {declared.group(1)} 张，"
+                f"分批表实际加总 {sum(int(b) for b in batches)} 张")
+
+    # 主表 32 张：每一张都要在逐图来源里出现（四、其他角色 收的是仓库外的 7 件，排除）
+    other_zone = prov[prov.find("## 四、"):prov.find("## 五、")]
+    main_zone = prov.replace(other_zone, "")
+    prov_main = set(re.findall(r"`([\w\-]+)-ref\.jpg`", main_zone))
+    for miss in sorted(disk_main - prov_main):
+        problems.append(f"docs/来源与版权.md: 主表 {miss}-ref.jpg 没有逐图来源记录")
+
     # ---- 汇总 ----
     print(f"磁盘实际：主表 {len(main_imgs)} 张（缩略图 {len(main_thumbs)}）· "
           f"画廊 {gallery_total} 张 · 索引墙 {idx_count} 件（未署名 {idx_unsigned}）")

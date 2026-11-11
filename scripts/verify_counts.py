@@ -275,6 +275,31 @@ def main():
     for miss in sorted(disk_main - prov_main):
         problems.append(f"docs/来源与版权.md: 主表 {miss}-ref.jpg 没有逐图来源记录")
 
+    # ---- 6. 对象覆盖：主表 32 个对象要在两篇「按对象」的文档里都有条目 ----
+    lines = readme.splitlines()
+    objects = []
+    for i, ln in enumerate(lines):
+        if "原画/thumbs/" in ln and i:
+            m = re.search(r"<b>([^<]+)</b>", lines[i - 1])
+            if m:
+                objects.append(m.group(1))
+    if len(objects) != len(main_imgs):
+        problems.append(
+            f"README.md: 主表表格解析出 {len(objects)} 个对象，磁盘主表 {len(main_imgs)} 张")
+
+    def canonical(name):
+        # 「GPT（OpenAI）」→ GPT，「Mistral AI」→ Mistral：文档之间用短名是允许的
+        return name.split("（")[0].strip().removesuffix(" AI").strip()
+
+    for doc, rel in (("官方链接索引", "docs/官方链接索引.md"),
+                     ("角色设定与设计规律", "docs/角色设定与设计规律.md")):
+        text = read(rel)
+        missing = [n for n in objects if canonical(n) not in text]
+        if missing:
+            problems.append(f"{rel}: 缺这些对象的条目 → {'、'.join(missing)}")
+        else:
+            passed += 1
+
     # ---- 汇总 ----
     print(f"磁盘实际：主表 {len(main_imgs)} 张（缩略图 {len(main_thumbs)}）· "
           f"画廊 {gallery_total} 张 · 索引墙 {idx_count} 件（未署名 {idx_unsigned}）")

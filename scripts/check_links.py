@@ -26,6 +26,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REGISTRY = os.path.join(ROOT, "scripts", "dead-links.txt")
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
 TIMEOUT = 20
@@ -72,7 +73,7 @@ def encode_url(url):
         (parts.scheme, parts.netloc, path, query, parts.fragment))
 
 
-def probe(url, attempts=3):
+def probe(url, attempts=3, timeout=TIMEOUT):
     """HTTP 状态码是确定结论，直接返回；仅网络异常才重试。"""
     last = "未知异常"
     try:
@@ -82,7 +83,7 @@ def probe(url, attempts=3):
     for attempt in range(attempts):
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         try:
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return url, resp.status, ""
         except urllib.error.HTTPError as exc:
             return url, exc.code, ""
@@ -93,19 +94,43 @@ def probe(url, attempts=3):
     return url, None, last
 
 
+def load_registry():
+    """已登记失效的链接：原站删页、上游改地址，条目要留档但链接修不了。"""
+    dead = {}
+    if not os.path.exists(REGISTRY):
+        return dead
+    with open(REGISTRY, encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            url, _, note = line.partition("#")
+            if url.strip().startswith("http"):
+                dead[url.strip()] = note.strip()
+    return dead
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", help="Markdown 报告输出路径")
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--timeout", type=int, default=TIMEOUT,
+                    help=f"单次请求超时秒数（默认 {TIMEOUT}）")
     args = ap.parse_args()
 
+    registry = load_registry()
     urls = collect_urls()
-    if not urls:
+    registered = sorted(u for u in urls if u in registry)
+    urls = {u: where for u, where in urls.items() if u not in registry}
+    if not urls and not registered:
         print("未收集到任何链接")
         return 0
 
     with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        results = list(pool.map(probe, sorted(urls)))
+        results = list(pool.map(lambda u: probe(u, timeout=args.timeout), sorted(urls)))
+        revived = [u for u, status, _ in
+                   pool.map(lambda u: probe(u, timeout=args.timeout), registered)
+                   if status == 200 or (status and 300 <= status < 400)]
 
     dead, uncertain, ok = [], [], 0
     for url, status, err in results:
@@ -118,7 +143,8 @@ def main():
         else:
             uncertain.append((url, err or "未知异常"))
 
-    print(f"共 {len(urls)} 条链接：正常 {ok} · 失效 {len(dead)} · 待人工确认 {len(uncertain)}")
+    print(f"共 {len(urls)} 条链接：正常 {ok} · 失效 {len(dead)} · 待人工确认 {len(uncertain)}"
+          + (f" · 已登记失效 {len(registered)} 条（跳过）" if registered else ""))
     if dead:
         print("\n[失效]")
         for url, code in dead:
@@ -127,6 +153,10 @@ def main():
         print("\n[待人工确认]")
         for url, code in uncertain:
             print(f"  {code}  {url}")
+    if revived:
+        print("\n[已登记失效但其实能访问了，建议从 scripts/dead-links.txt 移除]")
+        for url in revived:
+            print(f"  200  {url}")
 
     if args.output:
         lines = [
@@ -135,6 +165,12 @@ def main():
             f"自动检测 **{len(urls)}** 条链接：正常 {ok} · 失效 {len(dead)} · 待人工确认 {len(uncertain)}。",
             "",
         ]
+        if registered:
+            lines += [f"另有 **{len(registered)}** 条已登记失效，跳过探测（见 `scripts/dead-links.txt`）。", ""]
+        if revived:
+            lines += ["### 已登记失效但当前可访问（建议移出登记）", ""]
+            lines += [f"- <{url}>" for url in revived]
+            lines.append("")
         if dead:
             lines += ["### 失效链接", "", "| 状态 | 链接 | 出现位置 |", "| --- | --- | --- |"]
             for url, code in dead:

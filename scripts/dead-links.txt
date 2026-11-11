@@ -1,0 +1,12 @@
+# 已登记失效的外链
+#
+# 用途：站点删页或上游改地址后，链接确实打不开，但条目本身要留档。
+# check_links.py 会跳过这里的 URL；如果某个 URL 又能访问了，脚本会提示从本文件移除。
+#
+# 格式：URL  #  发现日期  原因
+https://xn--pssy23gqgbz2d718b.com/works/claude202610240002.html  # 2026-11-11 原作品页被站点删除（画廊索引墙「Claude 娘在废墟草原上的午后茶会」）
+https://xn--pssy23gqgbz2d718b.com/works/deepseek202610020010.html  # 2026-11-11 原作品页被站点删除（画廊索引墙「小笨蛋模型」）
+https://xn--pssy23gqgbz2d718b.com/works/deepseek202610050002.html  # 2026-11-11 原作品页被站点删除（画廊索引墙「做噩梦了吗」）
+https://xn--pssy23gqgbz2d718b.com/works/deepseek202610050039.html  # 2026-11-11 原作品页被站点删除（画廊索引墙「噩梦」）
+https://xn--pssy23gqgbz2d718b.com/works/deepseek202610230023.html  # 2026-11-11 原作品页被站点删除（画廊索引墙「偷吃米饭被抓包的 DeepSeek 娘」）
+https://xn--pssy23gqgbz2d718b.com/submissions/previews/deepseek/d2cc76d9cec64054.webp  # 2026-11-11 随上述作品页一并失效（索引墙缩略图）

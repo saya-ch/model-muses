@@ -26,7 +26,7 @@ jobs:
           WORK=/tmp/traffic-data
           rm -rf "$WORK" && mkdir -p "$WORK" && cd "$WORK"
           git init -q
-          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           if git fetch -q origin traffic 2>/dev/null; then
             git checkout -q traffic
           else

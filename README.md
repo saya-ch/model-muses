@@ -13,7 +13,7 @@
 | 去处 | 收什么 | 现在有多少 |
 | --- | --- | --- |
 | [**画廊**](docs/画廊.md) | **任何类型**：立绘、带场景的插画、梗图、三视图、漫画 | 102 张，每张都能点开看原图 |
-| [**画廊索引**](docs/画廊索引.md) | 站内全部作品的缩略图墙，含 1040 件原站未署名的 | 1075 件，点图进原作品页 |
+| [**画廊索引**](docs/画廊索引.md) | 站内全部作品的缩略图墙，含 1469 件原站未署名的 | 1894 件，点图进原作品页 |
 | [**跨平台来源**](docs/跨平台来源.md) | 站外还有哪些地方有技术拟人图、拿到了什么、为什么大部分没收 | 9 个平台 |
 
 画廊里每一张图都带预览和跳转：**点图看原图，点标题看作品页与授权出处。** 逛起来跟看画册差不多。
@@ -26,7 +26,7 @@
 <tr>
 <td width="170"><b>DeepSeek</b><br><a href="https://www.deepseek.com/">官网</a> · <a href="https://api-docs.deepseek.com/">API 文档</a> · <a href="https://github.com/deepseek-ai">GitHub</a></td>
 <td width="130" align="center"><a href="原画/deepseek-ref.jpg" title="点开看原图"><img src="原画/thumbs/deepseek.jpg" width="120"></a></td>
-<td>DeepSeek（深度求索）背后是量化投资公司幻方量化，模型走稀疏 MoE 路线。注意力侧从早期的 <b>MLA</b> 换到<b>混合注意力</b>——压缩稀疏注意力沿序列维度压 KV cache，叠一层深度压缩注意力兼顾密集读；结构上用<b>流形约束超连接</b>把残差映射约束到双随机矩阵流形，配 <b>Muon</b> 优化器稳收敛。训练保留<b>多 token 预测</b>，强化学习后训练走自研 <b>GRPO</b>；推理分非思考 / 高思考 / 极限三档，视觉侧以「<b>视觉原语</b>」把点与框坐标当推理单元。MIT 开放。</td>
+<td>DeepSeek（深度求索）背后是量化投资公司幻方量化，模型走稀疏 MoE 路线。注意力侧从早期的 <b>MLA</b> 换到<b>压缩稀疏注意力</b>——沿序列维度压 KV cache，现行架构已走成跨层共享 KV、复用稀疏索引的 <b>CSA2</b>，不再叠那层压缩注意力；结构上用<b>流形约束超连接</b>把残差映射约束到双随机矩阵流形，配 <b>Muon</b> 优化器稳收敛。训练保留<b>多 token 预测</b>，强化学习后训练走自研 <b>GRPO</b>；推理分非思考 / 高思考 / 极限三档，视觉侧以「<b>视觉原语</b>」把点与框坐标当推理单元。MIT 开放。</td>
 </tr>
 <tr>
 <td width="170"><b>GPT（OpenAI）</b><br><a href="https://openai.com/">官网</a> · <a href="https://platform.openai.com/docs">开发者文档</a> · <a href="https://github.com/openai">GitHub</a></td>
@@ -46,37 +46,37 @@
 <tr>
 <td width="170"><b>Grok（xAI）</b><br><a href="https://x.ai/">官网</a> · <a href="https://docs.x.ai/">API 文档</a> · <a href="https://github.com/xai-org">GitHub</a></td>
 <td width="130" align="center"><a href="原画/grok-ref.jpg" title="点开看原图"><img src="原画/thumbs/grok.jpg" width="120"></a></td>
-<td>Grok 来自马斯克的 xAI，是通用对话与推理模型。差异点是<b>实时性</b>——检索层直接接 X 平台的数据流，DeepSearch 一类能力会读取当下社交帖子与突发新闻，而非依赖训练截止的静态知识。输出侧由 <b>Skills</b> 机制承接：把一次教会的工作流存成账号级技能，跨会话复用，并直接产出可下载的 Office 文档与 PDF；单次请求支持上百个并行工具调用。代价是来源缺少权威性筛选。</td>
+<td>Grok 来自马斯克旗下的 <b>SpaceX Super Intelligence</b>（原 xAI，2026 年 2 月并入 SpaceX，7 月改名 SpaceXAI，10 月改为现名），是通用对话与推理模型。差异点是<b>实时性</b>——检索层直接接 X 平台的数据流，DeepSearch 一类能力会读取当下社交帖子与突发新闻，而非依赖训练截止的静态知识。输出侧由 <b>Skills</b> 机制承接：把一次教会的工作流存成账号级技能，跨会话复用，并直接产出可下载的 Office 文档与 PDF；单次请求支持上百个并行工具调用。代价是来源缺少权威性筛选。</td>
 </tr>
 <tr>
 <td width="170"><b>Kimi（月之暗面）</b><br><a href="https://www.moonshot.cn/">官网</a> · <a href="https://platform.moonshot.cn/">开放平台</a> · <a href="https://github.com/MoonshotAI">GitHub</a></td>
 <td width="130" align="center"><a href="原画/kimi-ref.jpg" title="点开看原图"><img src="原画/thumbs/kimi.jpg" width="120"></a></td>
-<td>Kimi 来自月之暗面（Moonshot AI），走 MoE 路线，自研 <b>Kimi Delta Attention</b> 混合线性注意力与<b>注意力残差</b>，配合量化感知训练直接产出低比特权重，支撑起百万级上下文。模型系列本身即 <b>agentic</b>，接上工具能自主完成多步任务。推理侧为<b>混合思考模式</b>。开放权重，采用带附加条件的开放许可。</td>
+<td>Kimi 来自月之暗面（Moonshot AI），走 MoE 路线，自研 <b>Kimi Delta Attention</b> 混合线性注意力与<b>注意力残差</b>，配合量化感知训练直接产出低比特权重，支撑起百万级上下文。模型系列本身即 <b>agentic</b>，接上工具能自主完成多步任务。推理侧思考<b>常开</b>，用推理档位调深浅。开放权重，采用带附加条件的开放许可。</td>
 </tr>
 <tr>
 <td width="170"><b>Qwen（通义千问）</b><br><a href="https://qwenlm.github.io/">官网</a> · <a href="https://github.com/QwenLM">GitHub</a></td>
 <td width="130" align="center"><a href="原画/qwen-ref.jpg" title="点开看原图"><img src="原画/thumbs/qwen.jpg" width="120"></a></td>
-<td>Qwen（通义千问）是阿里云通义团队的开源模型系列，<b>覆盖最全的一条产品线</b>：轻量稠密到大规模 MoE，端侧到企业级。技术亮点是<b>混合思考模式</b>（开关切换分步推理与快速响应，配思考预算控成本）、多语言支持、统一多模态编码与<b>原生 MCP</b>。全系 Apache 2.0，商用无限制。</td>
+<td>Qwen（千问原通义千问）是阿里通义实验室的开源模型系列，<b>覆盖最全的一条产品线</b>：轻量稠密到大规模 MoE，端侧到企业级。技术亮点是<b>混合思考模式</b>（开关切换分步推理与快速响应，配思考预算控成本）、多语言支持、统一多模态编码与<b>原生 MCP</b>。主流型号 <b>Apache 2.0</b> 商用无附加条件，旗舰级开权重型号另带署名与营收门槛的自定义许可。</td>
 </tr>
 <tr>
 <td width="170"><b>GLM（智谱）</b><br><a href="https://docs.bigmodel.cn/">开放文档</a> · <a href="https://github.com/THUDM">GitHub</a></td>
 <td width="130" align="center"><a href="原画/glm-ref.jpg" title="点开看原图"><img src="原画/thumbs/glm.jpg" width="120"></a></td>
-<td>GLM 出自智谱（Zhipu AI，源自清华知识工程实验室），采用 MoE 架构。<b>参数效率</b>是核心卖点——轻量版本可比肩更大的闭源模型。<b>混合推理模式</b>可切，针对工具调用、网页浏览与软件工程做了专门优化；另有<b>原生多模态分支</b>，与 OCR、语音、图像生成等细分模型构成全模态矩阵。权重以 MIT 协议开放。</td>
+<td>GLM 出自智谱（现英文名 <b>Z.AI</b>，原名 Zhipu AI，源自清华知识工程实验室），采用 MoE 架构。<b>参数效率</b>是核心卖点——轻量版本可比肩更大的闭源模型。<b>混合推理模式</b>可切，针对工具调用、网页浏览与软件工程做了专门优化；另有<b>原生多模态分支</b>，与 OCR、语音、图像生成等细分模型构成全模态矩阵。权重以 <b>MIT</b> 协议开放，最新旗舰另有带安全审查条款的自定义许可。</td>
 </tr>
 <tr>
 <td width="170"><b>混元（腾讯）</b><br><a href="https://github.com/Tencent-Hunyuan">GitHub</a> · <a href="https://hunyuan.tencent.com/">混元官网</a></td>
 <td width="130" align="center"><a href="原画/hunyuan-ref.jpg" title="点开看原图"><img src="原画/thumbs/hunyuan.jpg" width="120"></a></td>
-<td>混元是腾讯自研的大模型系列，走<b>中文语料加全模态</b>路线，文本、图像、语音、视频与 3D 生成并行推进。深度依托腾讯云与微信生态，针对中文语境与本土知识优化。开源版本覆盖语言、<b>视频世界模型</b>与 <b>3D 重建</b>方向：前者按片段生成、过程中可用文字介入改写场景，后者能在单张消费级显卡上秒级重建 3D 世界。多个项目以 Apache 2.0 协议发布。</td>
+<td>混元是腾讯自研的大模型系列，走<b>中文语料加全模态</b>路线，文本、图像、语音、视频与 3D 生成并行推进。深度依托腾讯云，微信侧已非默认底座，针对中文语境与本土知识优化。开源版本覆盖语言、<b>视频世界模型</b>与 <b>3D 重建</b>方向：前者按片段生成、过程中可用文字介入改写场景，后者能在单张消费级显卡上秒级重建 3D 世界。语言线以 <b>Apache 2.0</b> 发布，视频与 3D 线走<b>腾讯混元社区许可</b>，含地域限制。</td>
 </tr>
 <tr>
 <td width="170"><b>豆包 Seed（字节跳动）</b><br><a href="https://seed.bytedance.com/">Seed 官网</a> · <a href="https://www.volcengine.com/docs/ark">火山方舟文档</a> · <a href="https://github.com/volcengine">GitHub</a></td>
 <td width="130" align="center"><a href="原画/seed-ref.jpg" title="点开看原图"><img src="原画/thumbs/seed.jpg" width="120"></a></td>
-<td>豆包 Seed 是字节跳动 Seed 团队的模型系列，经火山引擎对外提供服务，主线是<b>统一多模态架构</b>——单主干同时接收文本、图像、视频、音频并做跨模态联合推理，而非拼接多个专用模型。工程重点在视觉编码器瘦身与长上下文访存成本。产品侧另有一条<b>按周迭代的动态模型</b>，以统一模型 ID 持续推送最新版本；生成侧另有图像、视频、语音与 3D 资产的独立模型线。</td>
+<td>豆包 Seed 是字节跳动 Seed 团队的模型系列，经火山引擎对外提供服务，主线是<b>统一多模态架构</b>——单主干同时接收文本、图像、视频并做跨模态联合推理，而非拼接多个专用模型，音频另走<b>端到端实时语音</b>专线。工程重点在视觉编码器瘦身与长上下文访存成本。产品侧另有一条<b>按周迭代的动态模型</b>，以统一模型 ID 持续推送最新版本；生成侧另有图像、视频、语音与 3D 资产的独立模型线。</td>
 </tr>
 <tr>
 <td width="170"><b>文心一言（百度）</b><br><a href="https://yiyan.baidu.com/">产品页</a> · <a href="https://ernie.baidu.com/">文心官方博客</a> · <a href="https://github.com/PaddlePaddle/ERNIE">开源仓库</a></td>
 <td width="130" align="center"><a href="原画/wenxin-ref.jpg" title="点开看原图"><img src="原画/thumbs/wenxin.jpg" width="120"></a></td>
-<td>文心一言（百度，2025 年 11 月起品牌统一为「文心」）的本体是文心大模型 ERNIE 系列。技术基因是<b>知识增强</b>——预训练阶段融入大规模知识图谱。旗舰走<b>原生全模态</b>：文本、图像、音频、视频映射进同一符号空间，用统一的「<b>下一组 token 预测</b>」端到端优化，分模态再各设专门目标（视觉走下一帧与尺度预测、音频走下一编解码预测），而非在后挂专用解码器；MoE 用<b>模态无关路由</b>，专家按 token 特征而非模态分配。开源侧另有 Apache 2.0 的多模态异构 MoE 系列。</td>
+<td>文心一言（百度，2025 年 11 月改名「文心」，2026 年 7 月整体并入<b>文心助手</b>）的本体是文心大模型 ERNIE 系列。技术基因是<b>知识增强</b>——预训练阶段融入大规模知识图谱。旗舰走<b>原生全模态</b>：文本、图像、音频、视频映射进同一符号空间，用统一的「<b>下一组 token 预测</b>」端到端优化，分模态再各设专门目标（视觉走下一帧与尺度预测、音频走下一编解码预测），而非在后挂专用解码器；MoE 用<b>模态无关路由</b>，专家按 token 特征而非模态分配。开源侧另有 Apache 2.0 的多模态异构 MoE 系列。</td>
 </tr>
 <tr>
 <td width="170"><b>阶跃星辰（StepFun）</b><br><a href="https://www.stepfun.com/">官网</a> · <a href="https://platform.stepfun.com/">开放平台</a> · <a href="https://github.com/stepfun-ai">GitHub</a></td>
@@ -91,22 +91,22 @@
 <tr>
 <td width="170"><b>Llama（Meta）</b><br><a href="https://llama.meta.com/">官网</a> · <a href="https://huggingface.co/meta-llama">模型页</a></td>
 <td width="130" align="center"><a href="原画/llama-ref.jpg" title="点开看原图"><img src="原画/thumbs/llama.jpg" width="120"></a></td>
-<td>Llama 来自 Meta，是<b>开放权重路线</b>的代表：权重公开，衍生出大量微调版与量化版，主导私有化部署与学术复现生态，最新一代采用<b>早期融合的原生多模态 MoE</b> 设计。它同时是别人的底座——多个主流产品以其为基座后训练。授权为社区许可：可商用，但须标注「Built with Llama」、衍生模型名以 Llama 开头，且超出月活阈值的大平台需单独取得授权。</td>
+<td>Llama 来自 Meta，曾是<b>开放权重路线</b>的代表——Meta 已把开放权重线转到 <b>Muse</b>，Llama 停在原代不再往前推：权重公开，衍生出大量微调版与量化版，主导私有化部署与学术复现生态，最新一代采用<b>早期融合的原生多模态 MoE</b> 设计。它同时是别人的底座——多个主流产品以其为基座后训练。授权为社区许可：可商用，但须标注「Built with Llama」、衍生模型名以 Llama 开头，且超出月活阈值的大平台需单独取得授权。</td>
 </tr>
 <tr>
 <td width="170"><b>Mistral AI</b><br><a href="https://mistral.ai/">官网</a> · <a href="https://docs.mistral.ai/">文档</a> · <a href="https://github.com/mistralai">GitHub</a></td>
 <td width="130" align="center"><a href="原画/mistral-ref.jpg" title="点开看原图"><img src="原画/thumbs/mistral.jpg" width="120"></a></td>
-<td>Mistral AI 是一家总部位于巴黎的欧洲厂商，以<b>高效小模型与开放权重</b>著称：参数压得比同档更狠而质量不降，小尺寸系列广泛用于端侧与边缘部署，另有稀疏 MoE 版与长文档结构化输出模型。授权分层明确——多数开源模型用 Apache 2.0，部分走改版 MIT（月营收超阈值需转商业授权），旗舰模型则提供非商用免费与商业授权两条路。另有 OCR、语音等周边模型。</td>
+<td>Mistral AI 是一家总部位于巴黎的欧洲厂商，以<b>高效小模型与开放权重</b>著称：参数压得比同档更狠而质量不降，小尺寸系列广泛用于端侧与边缘部署，另有稀疏 MoE 版与长文档结构化输出模型。授权分层明确——多数开源模型用 Apache 2.0，部分走改版 MIT（月营收超阈值需转商业授权），旗舰权重走自有的 <b>Open-Weight License</b>：自用与自建产品放开，只有转做托管模型服务才需单独授权。另有 OCR、语音等周边模型。</td>
 </tr>
 <tr>
 <td width="170"><b>MiniMax</b><br><a href="https://www.minimax.io/">官网</a> · <a href="https://platform.minimax.io/docs">平台文档</a> · <a href="https://github.com/MiniMax-AI">GitHub</a></td>
 <td width="130" align="center"><a href="原画/minimax-ref.jpg" title="点开看原图"><img src="原画/thumbs/minimax.jpg" width="120"></a></td>
-<td>MiniMax（稀宇科技）是上海的基础模型公司，本体是<b>全模态自研底座</b>：文本、语音、视频、音乐全部自研而非集成他人。工程路线上以自研<b>线性注意力</b>打破注意力复杂度带来的上下文长度限制，后续转向稀疏注意力架构。生成侧已做到单模型同时输出带原生立体声的高分辨率视频——对白、音效与环境声在同一次生成中完成，靠自研的高压缩 tokenizer 降低生成开销，并开放了权重供本地部署。</td>
+<td>MiniMax（稀宇科技）是上海的基础模型公司，本体是<b>全模态自研底座</b>：文本、语音、视频、音乐四条线均自研只视频侧的编码器直接复用 <b>Qwen3-VL-32B</b> 预训练权重。工程路线上以自研<b>线性注意力</b>打破注意力复杂度带来的上下文长度限制，后续转向稀疏注意力架构。生成侧已做到单模型同时输出带原生立体声的高分辨率视频——对白、音效与环境声在同一次生成中完成，靠自研的高压缩 tokenizer 降低生成开销，并开放了权重供本地部署。</td>
 </tr>
 <tr>
 <td width="170"><b>Perplexity</b><br><a href="https://www.perplexity.ai/">官网</a> · <a href="https://docs.perplexity.ai/">API 文档</a> · <a href="https://github.com/perplexityai">GitHub</a></td>
 <td width="130" align="center"><a href="原画/perplexity-ref.jpg" title="点开看原图"><img src="原画/thumbs/perplexity.jpg" width="120"></a></td>
-<td>Perplexity 出自 Perplexity AI，本质是<b>检索增强生成（RAG）引擎</b>，而非参数化知识模型——每次回答都必须经过实时检索。核心资产是自建的实时网页索引，由预索引与实时抓取两套爬虫持续更新，索引层跑在 Vespa 之上；检索层混合自建索引与外部搜索 API，经相关性与权威性等多道关卡筛选后综合成带内联引用的回答。综合层使用自研 Sonar 系列（基于 Llama 后训练），并路由多家前沿闭源模型处理更难的查询；之上是能多步检索并交叉核验的深度研究模式。</td>
+<td>Perplexity 出自 Perplexity AI，本质是<b>检索增强生成（RAG）引擎</b>，而非参数化知识模型——每次回答都必须经过实时检索。核心资产是自建的实时网页索引，由预索引与实时抓取两套爬虫持续更新，索引层已迁到自家专用检索系统（<b>Vespa</b> 只留着别的用途）；检索层混合自建索引与外部搜索 API，经相关性与权威性等多道关卡筛选后综合成带内联引用的回答。综合层默认用自研 <b>Sonar</b>（基于 Llama 后训练）出答案更难的查询经 <b>Agent API</b> 按 preset 路由到多家前沿模型；之上是能多步检索并交叉核验的深度研究模式。</td>
 </tr>
 <tr>
 <td width="170"><b>JEV（TypeSafe AI）</b><br><a href="https://typesafe.ai/">官网</a> · <a href="https://baike.baidu.com/item/Jev/69087529">百科条目</a></td>
@@ -156,7 +156,7 @@
 <tr>
 <td width="170"><b>OpenCode</b><br><a href="https://opencode.ai/">官网</a> · <a href="https://github.com/anomalyco/opencode">GitHub</a></td>
 <td width="130" align="center"><a href="原画/opencode-ref.jpg" title="点开看原图"><img src="原画/thumbs/opencode.jpg" width="120"></a></td>
-<td>OpenCode 由 Anomaly（原 SST）开源，本体是<b>与模型解耦的 AI 编码 agent 外壳</b>：终端、桌面、Web、IDE 扩展多形态，底层经 <b>Models.dev</b> 接入数十家供应商，也可直连各家订阅账户。工程细节上原生支持 <b>LSP</b>（用语言服务器取精确符号与诊断，而非粘贴文件内容）、多会话并行、计划与执行双模式、工具权限规则与 MCP。MIT 协议。</td>
+<td>OpenCode 由 Anomaly（原 SST）开源，本体是<b>与模型解耦的 AI 编码 agent 外壳</b>：终端、桌面、Web、IDE 扩展多形态，底层经 <b>Models.dev</b> 接入数十家供应商，也可直连部分家订阅账户（Anthropic 侧已禁 OAuth 跨产品使用）。工程细节上原生支持 <b>LSP</b>（用语言服务器取精确符号与诊断，而非粘贴文件内容）、多会话并行、计划与执行双模式、工具权限规则与 MCP。MIT 协议。</td>
 </tr>
 <tr>
 <td width="170"><b>GitHub Copilot</b><br><a href="https://github.com/features/copilot">产品页</a> · <a href="https://docs.github.com/copilot">文档</a></td>
@@ -171,7 +171,7 @@
 <tr>
 <td width="170"><b>NovelAI</b><br><a href="https://novelai.net/">官网</a></td>
 <td width="130" align="center"><a href="原画/novelai-ref.jpg" title="点开看原图"><img src="原画/thumbs/novelai.jpg" width="120"></a></td>
-<td>NovelAI 由 Anlatan 运营，是订阅制 AI 创作平台，本体是「写作加绘画」双产品。文本侧是自研微调模型序列，配 <b>Lorebook</b>（把角色、地点、世界规则结构化，模型按需召回以维持长篇一致性）。绘画侧是自行定制的 <b>Stable Diffusion</b> 衍生模型，在 <b>Danbooru 数据集</b>上训练，专攻二次元风格，支持图生图、局部重绘与画布编辑。</td>
+<td>NovelAI 由 Anlatan 运营，是订阅制 AI 创作平台，本体是「写作加绘画」双产品。文本侧是自研微调模型序列，配 <b>Lorebook</b>（把角色、地点、世界规则结构化，模型按需召回以维持长篇一致性）。绘画侧是<b>从零自训的原创扩散模型</b>，不再基于 Stable Diffusion 公共基座，在 <b>Danbooru 数据集</b>上训练，专攻二次元风格，支持图生图、局部重绘与画布编辑。</td>
 </tr>
 <tr>
 <td width="170"><b>ComfyUI</b><br><a href="https://www.comfy.org/">官网</a> · <a href="https://docs.comfy.org/">文档</a> · <a href="https://github.com/Comfy-Org/ComfyUI">GitHub</a></td>
@@ -181,7 +181,7 @@
 <tr>
 <td width="170"><b>ZCode（智谱）</b><br><a href="https://zcode-ai.com/">官网</a> · <a href="https://zcode-ai.com/cn/docs">文档</a></td>
 <td width="130" align="center"><a href="原画/zcode-ref.jpg" title="点开看原图"><img src="原画/thumbs/zcode.jpg" width="120"></a></td>
-<td>ZCode 是智谱（Zhipu AI）出品的 <b>AI 编程工作台（Agentic Development Environment）</b>，自研 Agent 内核，深度适配自家旗舰模型。桌面、浏览器、终端共用一套工作区，同一任务内持续保持目标、文件、终端结果与 Git 状态，从规划推进到实现与验证。支持 <b>MCP</b> 与执行模式权限管理，并可通过微信、飞书、Telegram 的 Bot 通道远程下发指令与查看进度。以 Apache-2.0 协议开源。</td>
+<td>ZCode 是智谱（Z.AI）出品的 <b>AI 编程工作台（Agentic Development Environment）</b>，自研 Agent 内核，深度适配自家旗舰模型。桌面、浏览器、终端共用一套工作区，同一任务内持续保持目标、文件、终端结果与 Git 状态，从规划推进到实现与验证。支持 <b>MCP</b> 与执行模式权限管理，并可通过微信、飞书、Telegram 的 Bot 通道远程下发指令与查看进度。以 Apache-2.0 协议开源。</td>
 </tr>
 </table>
 
@@ -193,7 +193,7 @@
 | --- | --- |
 | [docs/角色设定与设计规律.md](docs/角色设定与设计规律.md) | 32 个对象的层级归类、技术本体速查表、设计符号与真实技术特性的对应关系 |
 | [docs/画廊.md](docs/画廊.md) | **任何类型的图**：立绘 36 / 插画 25 / 梗图 32 / 设定 8 / 漫画 1，共 102 张，每张都带预览与跳转 |
-| [docs/画廊索引.md](docs/画廊索引.md) | 原站 1075 件未收作品的全量缩略图墙，按对象与类型双索引，含 1040 件未署名作品的外链导览 |
+| [docs/画廊索引.md](docs/画廊索引.md) | 原站 1894 件未收作品的全量缩略图墙，按对象与类型双索引，含 1469 件未署名作品的外链导览 |
 | [docs/跨平台来源.md](docs/跨平台来源.md) | 站外 9 个平台的采集结果：pixiv、GitHub 开源生态、萌娘百科、社区资源库，以及「为什么大部分没收」的判定标准 |
 | [docs/官方链接索引.md](docs/官方链接索引.md) | 32 个对象的官网 / 文档 / 代码仓库入口，按用途分类跳转 |
 | [docs/来源与版权.md](docs/来源与版权.md) | 逐图来源表（作品页 / 原图路径 / 尺寸）、来源链路图、三类主体区分、版权与使用提示 |
@@ -260,6 +260,6 @@ AI娘原画/
 
 ---
 
-*最后更新：2026-11-11。溯源方式：抓取蓝色大肥鱼站 24 个角色页 + 全部 54 页作品列表 + 526 个作品详情页 → 解析 JSON-LD（创作者 / 版权声明 / 授权 / 尺寸 / 描述）→ 下载原图并逐张做完整性校验与白底特征检测 → 本目录图片与站点预览缩略图做整图灰度相关度匹配，22/22 命中相关度 1.000（完全一致）。文心一言娘不在该站作品库中，改由 [ai-chan-sheets](https://github.com/lmy414/ai-chan-sheets) 的 `参考原图/04_文心一言娘/` 取得同一画师的原始作品（1143×2048，白底坐姿全身，四角像素 255），整幅格式转换入库。ComfyUI 一张取自画师本人的 pixiv 合集（《一些更新》150718881 · p4，941×1672）。另 7 张（昇腾、阶跃星辰、JEV、LobeHub、GitHub Copilot、Microsoft Copilot、Cloudflare）取自画师 B 站动态，其中 6 张为透明底、整幅合成白底，Cloudflare 一张原图为白底。画廊 102 张同样整幅处理：13 张取自画师 B 站动态（透明底合成白底）、38 张取自站点原图仓、8 张取自 GitHub 开源项目、43 张取自蓝色大肥鱼档案馆，**横版与方图按原比例保存，未缩放、未裁切、未补齐**。**MiMo（小米）一张是主表里唯一的非 ZipZipPipe 作品**，出自画师 @甶丶（站点授权字段为 `license-cc-by-nc`，即署名 + 非商业），1024×1536 透明底，整幅合成白底。全程未做任何截图、裁切或切片。*
+*最后更新：2026-11-21。索引墙按站点快照（`data/works.json`，1931 件）重建为 1894 件；15 段技术描述按 11 月现况复核修订。溯源方式：抓取蓝色大肥鱼站 24 个角色页 + 全部 54 页作品列表 + 526 个作品详情页 → 解析 JSON-LD（创作者 / 版权声明 / 授权 / 尺寸 / 描述）→ 下载原图并逐张做完整性校验与白底特征检测 → 本目录图片与站点预览缩略图做整图灰度相关度匹配，22/22 命中相关度 1.000（完全一致）。文心一言娘不在该站作品库中，改由 [ai-chan-sheets](https://github.com/lmy414/ai-chan-sheets) 的 `参考原图/04_文心一言娘/` 取得同一画师的原始作品（1143×2048，白底坐姿全身，四角像素 255），整幅格式转换入库。ComfyUI 一张取自画师本人的 pixiv 合集（《一些更新》150718881 · p4，941×1672）。另 7 张（昇腾、阶跃星辰、JEV、LobeHub、GitHub Copilot、Microsoft Copilot、Cloudflare）取自画师 B 站动态，其中 6 张为透明底、整幅合成白底，Cloudflare 一张原图为白底。画廊 102 张同样整幅处理：13 张取自画师 B 站动态（透明底合成白底）、38 张取自站点原图仓、8 张取自 GitHub 开源项目、43 张取自蓝色大肥鱼档案馆，**横版与方图按原比例保存，未缩放、未裁切、未补齐**。**MiMo（小米）一张是主表里唯一的非 ZipZipPipe 作品**，出自画师 @甶丶（站点授权字段为 `license-cc-by-nc`，即署名 + 非商业），1024×1536 透明底，整幅合成白底。全程未做任何截图、裁切或切片。*
 
 > **关于技术描述的时效性**：本表刻意只写**架构机制、能力方向、协议授权**这类相对稳定的结构性事实，**不写具体版本号、跑分、价格、份额与发布日期** —— 这些数字更新极快，写进仓库文档必然过期。每行末尾的官方链接是查证最新信息的入口，请以官方文档为准。

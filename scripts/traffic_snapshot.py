@@ -44,17 +44,22 @@ def main():
         args.date = date.today().isoformat()
 
     snap = {"date": args.date, "repo": repo}
+    ok = 0
     for key in ("views", "clones", "popular/referrers", "popular/paths"):
         try:
             snap[key.replace("/", "_")] = get(key, token, repo)
+            ok += 1
         except Exception as exc:  # noqa: BLE001 - 快照缺一项比全失败好
             snap[key.replace("/", "_")] = {"error": f"{type(exc).__name__}: {exc}"}
+    if not ok:
+        print("四个接口全部失败（多半是 token 没有 push 权限：GITHUB_TOKEN 调 traffic "
+              "会被 403，需要配 TRAFFIC_TOKEN）", file=sys.stderr)
 
     with open(args.out, "w", encoding="utf-8") as fh:
         json.dump(snap, fh, ensure_ascii=False, indent=1, sort_keys=True)
         fh.write("\n")
-    print(f"已写入 {args.out}")
-    return 0
+    print(f"已写入 {args.out}（{ok}/4 个接口成功）")
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":

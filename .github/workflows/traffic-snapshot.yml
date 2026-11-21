@@ -17,9 +17,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: 抓 traffic 并提交到 traffic 分支
+        # traffic 接口用 GITHUB_TOKEN 会 403需要在仓库 Settings > Secrets 里配
+        # 一个有 repo 权限的 PAT叫 TRAFFIC_TOKEN；没配之前这次运行会失败，
+        # 配好后每天自动跑。
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.TRAFFIC_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TRAFFIC_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           set -e
           DATE=$(date -u +%F)

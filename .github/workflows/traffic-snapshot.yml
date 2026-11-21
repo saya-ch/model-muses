@@ -1,0 +1,47 @@
+name: 流量快照
+
+# GitHub traffic API 只保留最近 14 天，每天存一份快照到 `traffic` 分支，
+# 主分支不受影响（verify_counts 等校验只看 master 的文件）。
+on:
+  schedule:
+    - cron: "23 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 抓 traffic 并提交到 traffic 分支
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          DATE=$(date -u +%F)
+          WORK=/tmp/traffic-data
+          rm -rf "$WORK" && mkdir -p "$WORK" && cd "$WORK"
+          git init -q
+          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          if git fetch -q origin traffic 2>/dev/null; then
+            git checkout -q traffic
+          else
+            git checkout -q -b traffic
+          fi
+          mkdir -p snapshots
+          python3 "$GITHUB_WORKSPACE/scripts/traffic_snapshot.py" \
+            --out "snapshots/$DATE.json" --date "$DATE"
+          git add "snapshots/$DATE.json"
+          if git diff --cached --quiet; then
+            echo "当天数据无变化，跳过提交"
+          else
+            git -c user.name="github-actions[bot]" \
+                -c user.email="github-actions[bot]@users.noreply.github.com" \
+                commit -qm "traffic snapshot $DATE"
+            git push -q origin traffic
+            echo "已推送 traffic 分支"
+          fi

@@ -10,3 +10,8 @@ https://xn--pssy23gqgbz2d718b.com/works/deepseek202610050002.html  # 2026-11-11 
 https://xn--pssy23gqgbz2d718b.com/works/deepseek202610050039.html  # 2026-11-11 原作品页被站点删除（画廊索引墙「噩梦」）
 https://xn--pssy23gqgbz2d718b.com/works/deepseek202610230023.html  # 2026-11-11 原作品页被站点删除（画廊索引墙「偷吃米饭被抓包的 DeepSeek 娘」）
 https://xn--pssy23gqgbz2d718b.com/submissions/previews/deepseek/d2cc76d9cec64054.webp  # 2026-11-11 随上述作品页一并失效（索引墙缩略图）
+https://xn--pssy23gqgbz2d718b.com/works/claude202611110001.html  # 2026-11-21 站点快照里有但作品页 404（画廊索引墙「Claude娘在联大讲台撕毁联合国宪章」）
+https://xn--pssy23gqgbz2d718b.com/works/claude202611110002.html  # 2026-11-21 站点快照里有但作品页 404（画廊索引墙「Claude娘在安理会举起小瓶子」）
+https://xn--pssy23gqgbz2d718b.com/works/deepseek202611110009.html  # 2026-11-21 站点快照里有但作品页 404（画廊索引墙「大海航行靠舵手」）
+https://xn--pssy23gqgbz2d718b.com/works/deepseek202611110010.html  # 2026-11-21 站点快照里有但作品页 404（画廊索引墙「在联大发言控诉帝国主义的鲸鱼娘」）
+https://xn--pssy23gqgbz2d718b.com/works/deepseek202611110011.html  # 2026-11-21 站点快照里有但作品页 404（画廊索引墙「AI娘的笑」）

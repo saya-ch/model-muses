@@ -1,6 +1,6 @@
 # Model Muses
 
-<p align="center"><img src="assets/cover-ai-synth.png" width="440"></p>
+<p align="center"><img src="assets/cover-ai-synth.png" width="880"></p>
 
 > 32 AI models & platforms · 32 standing portraits + 102 more in the gallery · technical profiles · per-image provenance
 

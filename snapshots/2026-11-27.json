@@ -1,0 +1,250 @@
+{
+ "clones": {
+  "clones": [
+   {
+    "count": 13,
+    "timestamp": "2026-11-13T00:00:00Z",
+    "uniques": 7
+   },
+   {
+    "count": 3,
+    "timestamp": "2026-11-14T00:00:00Z",
+    "uniques": 3
+   },
+   {
+    "count": 3,
+    "timestamp": "2026-11-15T00:00:00Z",
+    "uniques": 2
+   },
+   {
+    "count": 5,
+    "timestamp": "2026-11-16T00:00:00Z",
+    "uniques": 4
+   },
+   {
+    "count": 1,
+    "timestamp": "2026-11-17T00:00:00Z",
+    "uniques": 1
+   },
+   {
+    "count": 2,
+    "timestamp": "2026-11-18T00:00:00Z",
+    "uniques": 2
+   },
+   {
+    "count": 6,
+    "timestamp": "2026-11-19T00:00:00Z",
+    "uniques": 6
+   },
+   {
+    "count": 4,
+    "timestamp": "2026-11-20T00:00:00Z",
+    "uniques": 4
+   },
+   {
+    "count": 33,
+    "timestamp": "2026-11-21T00:00:00Z",
+    "uniques": 19
+   },
+   {
+    "count": 7,
+    "timestamp": "2026-11-22T00:00:00Z",
+    "uniques": 5
+   },
+   {
+    "count": 45,
+    "timestamp": "2026-11-23T00:00:00Z",
+    "uniques": 21
+   },
+   {
+    "count": 38,
+    "timestamp": "2026-11-24T00:00:00Z",
+    "uniques": 22
+   },
+   {
+    "count": 9,
+    "timestamp": "2026-11-25T00:00:00Z",
+    "uniques": 6
+   },
+   {
+    "count": 20,
+    "timestamp": "2026-11-26T00:00:00Z",
+    "uniques": 14
+   }
+  ],
+  "count": 189,
+  "uniques": 103
+ },
+ "date": "2026-11-27",
+ "popular_paths": [
+  {
+   "count": 197,
+   "path": "/saya-ch/model-muses",
+   "title": "Overview",
+   "uniques": 128
+  },
+  {
+   "count": 53,
+   "path": "/saya-ch/model-muses/tree/master/原画",
+   "title": "/tree/master/原画",
+   "uniques": 29
+  },
+  {
+   "count": 47,
+   "path": "/saya-ch/model-muses/blob/master/docs/画廊.md",
+   "title": "/blob/master/docs/画廊.md",
+   "uniques": 32
+  },
+  {
+   "count": 39,
+   "path": "/saya-ch/model-muses/blob/master/docs/画廊索引.md",
+   "title": "/blob/master/docs/画廊索引.md",
+   "uniques": 12
+  },
+  {
+   "count": 35,
+   "path": "/saya-ch/model-muses/tree/master/原画/画廊",
+   "title": "/tree/master/原画/画廊",
+   "uniques": 14
+  },
+  {
+   "count": 30,
+   "path": "/saya-ch/model-muses/tree/master/原画/画廊/梗图",
+   "title": "/tree/master/原画/画廊/梗图",
+   "uniques": 6
+  },
+  {
+   "count": 27,
+   "path": "/saya-ch/model-muses/blob/master/原画/deepseek-ref.jpg",
+   "title": "/blob/master/原画/deepseek-ref.jpg",
+   "uniques": 18
+  },
+  {
+   "count": 21,
+   "path": "/saya-ch/model-muses/tree/master",
+   "title": "/tree/master",
+   "uniques": 12
+  },
+  {
+   "count": 19,
+   "path": "/saya-ch/model-muses/tree/master/原画/画廊/插画",
+   "title": "/tree/master/原画/画廊/插画",
+   "uniques": 8
+  },
+  {
+   "count": 18,
+   "path": "/saya-ch/model-muses/blob/master/原画/gemini-ref.jpg",
+   "title": "/blob/master/原画/gemini-ref.jpg",
+   "uniques": 17
+  }
+ ],
+ "popular_referrers": [
+  {
+   "count": 84,
+   "referrer": "Google",
+   "uniques": 61
+  },
+  {
+   "count": 31,
+   "referrer": "github.com",
+   "uniques": 19
+  },
+  {
+   "count": 7,
+   "referrer": "Bing",
+   "uniques": 3
+  },
+  {
+   "count": 1,
+   "referrer": "Baidu",
+   "uniques": 1
+  },
+  {
+   "count": 1,
+   "referrer": "chat.qwen.ai",
+   "uniques": 1
+  },
+  {
+   "count": 1,
+   "referrer": "l.meta.ai",
+   "uniques": 1
+  }
+ ],
+ "repo": "saya-ch/model-muses",
+ "views": {
+  "count": 935,
+  "uniques": 164,
+  "views": [
+   {
+    "count": 76,
+    "timestamp": "2026-11-13T00:00:00Z",
+    "uniques": 9
+   },
+   {
+    "count": 111,
+    "timestamp": "2026-11-14T00:00:00Z",
+    "uniques": 8
+   },
+   {
+    "count": 89,
+    "timestamp": "2026-11-15T00:00:00Z",
+    "uniques": 13
+   },
+   {
+    "count": 52,
+    "timestamp": "2026-11-16T00:00:00Z",
+    "uniques": 12
+   },
+   {
+    "count": 53,
+    "timestamp": "2026-11-17T00:00:00Z",
+    "uniques": 11
+   },
+   {
+    "count": 27,
+    "timestamp": "2026-11-18T00:00:00Z",
+    "uniques": 9
+   },
+   {
+    "count": 45,
+    "timestamp": "2026-11-19T00:00:00Z",
+    "uniques": 9
+   },
+   {
+    "count": 31,
+    "timestamp": "2026-11-20T00:00:00Z",
+    "uniques": 14
+   },
+   {
+    "count": 140,
+    "timestamp": "2026-11-21T00:00:00Z",
+    "uniques": 19
+   },
+   {
+    "count": 63,
+    "timestamp": "2026-11-22T00:00:00Z",
+    "uniques": 18
+   },
+   {
+    "count": 25,
+    "timestamp": "2026-11-23T00:00:00Z",
+    "uniques": 13
+   },
+   {
+    "count": 36,
+    "timestamp": "2026-11-24T00:00:00Z",
+    "uniques": 10
+   },
+   {
+    "count": 24,
+    "timestamp": "2026-11-25T00:00:00Z",
+    "uniques": 13
+   },
+   {
+    "count": 163,
+    "timestamp": "2026-11-26T00:00:00Z",
+    "uniques": 23
+   }
+  ]
+ }
+}
